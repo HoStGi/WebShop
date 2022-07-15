@@ -1,9 +1,15 @@
 {% extends 'shop/base.html' %}
 {% block base %}
+
 <h2>Page Home</h2>
-<a href="{% url 'loginuser'%}">Login</a>
-<a href="{% url 'signupuser'%}">Sign Up</a>
-<form action="{% url 'logoutuser' %}" method="POST">
-    {% csrf_token %}
-<button>Logoutuser</button>
+{% for p in product %}
+    {{ p.product_name }}
+    <br>
+    {{ p.description }}
+    <br>
+    {{ p.price }}
+    <br>
+    {{ p.date }}
+{% endfor %}
+
 {% endblock%}

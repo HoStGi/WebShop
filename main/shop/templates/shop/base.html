@@ -3,6 +3,11 @@
 {% if user.is_authenticated %}
 Logged is as {{ user.email }}
 {%endif%}
+<a href="{% url 'loginuser'%}">Login</a>
+<a href="{% url 'signupuser'%}">Sign Up</a>
+<form action="{% url 'logoutuser' %}" method="POST">
+    {% csrf_token %}
+<button>Logoutuser</button>
 {% block base %}{% endblock %}
 
 
