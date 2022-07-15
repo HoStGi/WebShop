@@ -1,7 +1,5 @@
-""" import email
-from .models import User
+from .models import CustomUser
 from django.db.models import Q
-
 class AuthBackend(object):
     supports_object_permissions = True
     supports_object_user = False
@@ -9,16 +7,16 @@ class AuthBackend(object):
 
     def get_user(self, user_id):
         try:
-            return User.objects.get(pk=user_id)
-        except User.DoesNotExist:
+            return CustomUser.get(pk=user_id)
+        except CustomUser.DoesNotExist:
             return None
     
     def authenticate(self, request, username, password):
         try:
-            user = User.objects.get(
+            user = CustomUser.objects.get(
                 Q(username=username) | Q(email=username) | Q(phone=username)
             )
-        except User.DoesNotExist:
+        except CustomUser.DoesNotExist:
             return None
         
-        return user if user.check_password(password) else None """
+        return user if user.check_password(password) else None

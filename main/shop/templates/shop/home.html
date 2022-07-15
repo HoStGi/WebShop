@@ -1,5 +1,9 @@
 {% extends 'shop/base.html' %}
 {% block base %}
 <h2>Page Home</h2>
-<a href="client/signupuser.html">Sign Up</a>
+<a href="{% url 'loginuser'%}">Login</a>
+<a href="{% url 'signupuser'%}">Sign Up</a>
+<form action="{% url 'logoutuser' %}" method="POST">
+    {% csrf_token %}
+<button>Logoutuser</button>
 {% endblock%}

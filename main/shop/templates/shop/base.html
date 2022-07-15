@@ -1,4 +1,10 @@
 <br>
 <h1>Base block</h1>
-
+{% if user.is_authenticated %}
+Logged is as {{ user.email }}
+{%endif%}
 {% block base %}{% endblock %}
+
+
+
+

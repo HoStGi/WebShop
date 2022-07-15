@@ -1,4 +1,4 @@
-{% extends 'client/login.html'%}
+{% extends 'shop/base.html'%}
 {%block base %}
 
 <h2>Login</h2>
@@ -7,9 +7,10 @@
 
 <form method="POST">
     {% csrf_token %}
-    {{ form.ap_p}}
+    {{ login_form.as_p }}
     <button type="sumbit">Login</button>
 </form>
+
 
 
 {% endblock%}
