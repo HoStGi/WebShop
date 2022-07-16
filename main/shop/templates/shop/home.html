@@ -2,7 +2,10 @@
 {% block base %}
 
 <h2>Page Home</h2>
-{% for p in product %}
+
+{% for p in products %}
+<li>
+    <a href="{{ p.get_absolute_url }}">
     {{ p.product_name }}
     <br>
     {{ p.description }}
@@ -10,6 +13,21 @@
     {{ p.price }}
     <br>
     {{ p.date }}
+</a>
+</li>
+{% endfor %}
+{% if cat_selected == 0 %}
+    <li class="selected">Все категори</li>
+{% else %}
+    <li><a href="{% url 'home' %}">Все категори</a></li>
+{% endif %}
+
+{% for cat in cats %}
+    {% if cat.pk == cat_selected %}
+        <li class="selected">{{ cat.name }}</li>
+    {% else %}
+        <li><a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
+    {% endif %}
 {% endfor %}
 
 {% endblock%}

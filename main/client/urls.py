@@ -5,5 +5,5 @@ urlpatterns = [
     path('signupuser/', register, name='signupuser'),
     path('loginuser/', login_view, name='loginuser'),
     path('logoutuser/', logoutuser, name='logoutuser'),
-    path('login/', include('django.contrib.auth.urls')),
+    #path('login/', include('django.contrib.auth.urls')),
 ]

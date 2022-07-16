@@ -1,0 +1,9 @@
+{% extends 'shop/base.html' %}
+
+{% block base %}
+    {{ product.product_name }}
+    {{ product.cat }}
+    <button>Add item to cart</button>
+    <br>
+    <a href="{% url 'home' %}">BACK</a>
+{% endblock %}

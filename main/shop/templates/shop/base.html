@@ -1,13 +1,25 @@
-<br>
 <h1>Base block</h1>
+
 {% if user.is_authenticated %}
-Logged is as {{ user.email }}
-{%endif%}
-<a href="{% url 'loginuser'%}">Login</a>
-<a href="{% url 'signupuser'%}">Sign Up</a>
-<form action="{% url 'logoutuser' %}" method="POST">
-    {% csrf_token %}
-<button>Logoutuser</button>
+    Logged is as {{ user.email }}
+    <form action="{% url 'logoutuser' %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+    <br>
+{% else %}
+<br>
+<a href="{% url 'loginuser'%}"><button >Login</button></a>
+<br>
+<a href="{% url 'signupuser'%}"><button >Sign Up</button></a>
+<br>
+{% endif %}
+<br>
+
+
+
+
+
 {% block base %}{% endblock %}
 
 
