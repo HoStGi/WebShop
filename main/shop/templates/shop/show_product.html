@@ -3,6 +3,7 @@
 {% block base %}
     {{ product.product_name }}
     {{ product.cat }}
+    <p><img class="img-article-left" src="{{ product.image.url }}"></p>
     <button>Add item to cart</button>
     <br>
     <a href="{% url 'home' %}">BACK</a>

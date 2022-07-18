@@ -1,21 +1,17 @@
 {% extends 'shop/base.html' %}
 {% block base %}
+<br>
+<div class="row">
+    {% for product in products %}
+        <div class="col-lg-4 col-md-6">
+            <img src="{{ product.image.url }}"  width="300" height="400" class="img-fluid mb-2">
+            <a href="{{ product.get_absolute_url }}"><h3>{{ product.product_name }}</h3></a>
+            <p>{{ product.desciption }}</p>
+            <p>{{product.price}}₽</p>
+        </div>
+    {% endfor %}
+</div>
 
-<h2>Page Home</h2>
-
-{% for p in products %}
-<li>
-    <a href="{{ p.get_absolute_url }}">
-    {{ p.product_name }}
-    <br>
-    {{ p.description }}
-    <br>
-    {{ p.price }}
-    <br>
-    {{ p.date }}
-</a>
-</li>
-{% endfor %}
 {% if cat_selected == 0 %}
     <li class="selected">Все категори</li>
 {% else %}
