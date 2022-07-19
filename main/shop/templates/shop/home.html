@@ -1,29 +1,28 @@
 {% extends 'shop/base.html' %}
+
 {% block base %}
-<br>
+
+
 <div class="row">
     {% for product in products %}
-        <div class="col-lg-4 col-md-6">
-            <img src="{{ product.image.url }}"  width="300" height="400" class="img-fluid mb-2">
-            <a href="{{ product.get_absolute_url }}"><h3>{{ product.product_name }}</h3></a>
-            <p>{{ product.desciption }}</p>
-            <p>{{product.price}}₽</p>
+        <div class="card" style="width: 18rem;">
+            <img src="{{ product.image.url }}"  width="250" height="350" class="img-thumbnail">
+        <div class="card-body">
+          <h5 class="card-title" style="width: 18rem;">{{ product.product_name }}</h5>
+          <p class="card-text">{{ product.description }}</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Цена: {{product.price}}₽</li>
+            {% if product.discount != 0%}
+            <li class="list-group-item">SALE</li>
+            {% endif %}
+            <li class="list-group-item">Размерный ряд: 'M-XL'</li>
+          </ul>
+          <div class="card-body">
+            <a href="{{ product.get_absolute_url }}" class="btn">Подробнее <span class="arrow">❯</span></a>
+          </div>
         </div>
     {% endfor %}
 </div>
-
-{% if cat_selected == 0 %}
-    <li class="selected">Все категори</li>
-{% else %}
-    <li><a href="{% url 'home' %}">Все категори</a></li>
-{% endif %}
-
-{% for cat in cats %}
-    {% if cat.pk == cat_selected %}
-        <li class="selected">{{ cat.name }}</li>
-    {% else %}
-        <li><a href="{{ cat.get_absolute_url }}">{{ cat.name }}</a></li>
-    {% endif %}
-{% endfor %}
 
 {% endblock%}

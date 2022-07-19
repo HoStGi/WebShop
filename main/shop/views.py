@@ -3,7 +3,7 @@ from .models import Product, Category
 
 
 def home(request):
-    products = Product.objects.all()
+    products = Product.objects.filter(published=True)
     cats = Category.objects.all()  
     return render(request, 'shop/home.html', {'products': products, 'cats':cats, 'cat_selected': 0})
 

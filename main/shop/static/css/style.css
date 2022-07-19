@@ -1,0 +1,20 @@
+.category{
+    width: 150px;
+    height: 1500px;
+    background: #212529;
+    padding: 40px;
+    float: left;
+    position: relative;
+    left: 0px;  
+}
+.selected{
+    color:#e2e2e2;
+}
+.cat{
+    height: 50px;
+    color:#9b9d9f;
+}
+
+
+
+  
