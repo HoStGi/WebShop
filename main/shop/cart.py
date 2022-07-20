@@ -74,3 +74,8 @@ class Cart(object):
         # очищаем корзину в сессии
         del self.session[settings.CART_SESSION_ID]
         self.save()
+
+
+
+def cart(request):
+    return {'cart': Cart(request)}

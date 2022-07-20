@@ -21,26 +21,32 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
+               <!-- Корзина -->
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'home'%}">Home</a>
+                {% with total_items=cart|length %}
+                  {% if cart|length > 0 %}   
+                    <a class="nav-link active" aria-current="page" href="{% url 'cart_detail' %}"> В корзине: {{total_items }} шт, {{ cart.get_total_price }}₽</a>
+                  {% else %}
+                    <li class="nav-link active">Корзина пуста</li>
+                  {% endif %}
+                {% endwith %}
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Новинки</a>
               </li>
               <li class="nav-item">
-                
                 <a class="nav-link" href="#">Скидки</a>
               </li>
               {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'logoutuser'%}">Выйти</a>
+                <a class="nav-link" href="{% url 'client:logoutuser'%}">Выйти</a>
               </li>
               {% else %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'loginuser'%}">Войти</a>
+                <a class="nav-link" href="{% url 'client:loginuser'%}">Войти</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'signupuser'%}">Зарегестрироваться</a>
+                <a class="nav-link" href="{% url 'client:signupuser'%}">Зарегестрироваться</a>
               </li>
               {% endif %}
               <li class="nav-item dropdown">
@@ -71,21 +77,6 @@
             {% endif %}
         {% endfor %}
     </div>
-    <div id="subheader">
-      <div class="cart">
-        {% with total_items=cart|length %}
-        {% if cart|length > 0 %}
-          В корзине:
-            <a href="{% url 'cart:cart_detail' %}">
-              {{total_items }} шт, руб{{ cart.get_total_price }}
-            </a>
-            {% else %}
-            Корзина пуста
-            {% endif %}
-            {% endwith %}
-      </div> 
-    </div>
-
     {% block base %}{% endblock %}
   </body>
 </html>
