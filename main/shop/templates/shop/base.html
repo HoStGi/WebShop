@@ -71,6 +71,21 @@
             {% endif %}
         {% endfor %}
     </div>
+    <div id="subheader">
+      <div class="cart">
+        {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+          В корзине:
+            <a href="{% url 'cart:cart_detail' %}">
+              {{total_items }} шт, руб{{ cart.get_total_price }}
+            </a>
+            {% else %}
+            Корзина пуста
+            {% endif %}
+            {% endwith %}
+      </div> 
+    </div>
+
     {% block base %}{% endblock %}
   </body>
 </html>

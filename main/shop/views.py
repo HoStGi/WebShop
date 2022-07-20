@@ -1,4 +1,6 @@
 from django.shortcuts import get_object_or_404, render
+
+from cart.forms import CartAddProductForm
 from .models import Product, Category
 
 
@@ -9,8 +11,10 @@ def home(request):
 
 def show_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
+    cart_product_form = CartAddProductForm()
     if request.method == 'GET':
-        return render(request, 'shop/show_product.html', {'product': product})
+        return render(request, 'shop/show_product.html', {'product': product, 
+        'cart_product_form': cart_product_form})
 
 def show_category(request, cat_id):
     products = Product.objects.filter(cat_id=cat_id)
